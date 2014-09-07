@@ -34,14 +34,9 @@ set wildmenu
 set wildmode=full
 
 " set statusline=%F%m%r%h%w\ [FORMAT=%{&ff}]\ [TYPE=%Y]\ [ASCII=\%03.3b]\ [HEX=\%02.2B]\ [POS=%04l,%04v][%p%%]\ [LEN=%L]
-set laststatus=2
+set statusline=%<%f\ %{fugitive#statusline()}\ %h%m%r%=%-14.(%l,%c%V%)\ %P
 
-inoremap <c-a> <home>
-inoremap <c-e> <end>
-inoremap <c-n> <down>
-inoremap <c-p> <up>
-inoremap <c-b> <left>
-inoremap <c-f> <right>
+set laststatus=2
 
 if has('vim_starting')
         set runtimepath+=~/.vim/bundle/neobundle.vim/
@@ -83,6 +78,7 @@ NeoBundleCheck
 " NeoBundle 'davidoc/taskpaper.vim'
 " NeoBundle 'itchyny/lightline.vim'
 " NeoBundle 'altercation/vim-colors-solarized'
+NeoBundle 'tpope/vim-fugitive'
 NeoBundle 'wlangstroth/vim-racket'
 NeoBundle 'ds26gte/scmindent'
 NeoBundle 'kovisoft/slimv'
