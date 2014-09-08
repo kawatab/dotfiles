@@ -1,7 +1,3 @@
-" set lines=62
-" set columns=160
-" :80 vs
-
 set nocompatible
 
 set title	" Display the file name
@@ -33,13 +29,12 @@ set t_Co=256	" 256-color mode
 set wildmenu
 set wildmode=full
 
-" set statusline=%F%m%r%h%w\ [FORMAT=%{&ff}]\ [TYPE=%Y]\ [ASCII=\%03.3b]\ [HEX=\%02.2B]\ [POS=%04l,%04v][%p%%]\ [LEN=%L]
-set statusline=%<%f\ %{fugitive#statusline()}\ %h%m%r%=%-14.(%l,%c%V%)\ %P
+" set statusline=%<%f\ %{fugitive#statusline()}\ %h%m%r%=%-14.(%l,%c%V%)\ %P
 
 set laststatus=2
 
 if has('vim_starting')
-        set runtimepath+=~/.vim/bundle/neobundle.vim/
+		set runtimepath+=~/.vim/bundle/neobundle.vim/
 endif
 
 call neobundle#rc(expand('~/.vim/bundle/'))
@@ -73,11 +68,14 @@ NeoBundleCheck
 " --> NeoBundle 'USER/REPOSITORY-NAME'
 " NeoBundle 'Shougo/neocomplcache'
 " NeoBundle 'Shougo/neosnippet'
-" NeoBundle 'Shougo/unite.vim'
 " NeoBundle 'thinca/vim-quickrun'
 " NeoBundle 'davidoc/taskpaper.vim'
-" NeoBundle 'itchyny/lightline.vim'
 " NeoBundle 'altercation/vim-colors-solarized'
+" NeoBundle 'Shougo/vimshell.vim'
+NeoBundle 'Shougo/unite.vim'
+NeoBundle 'Shougo/vimfiler.vim'
+NeoBundle 'itchyny/lightline.vim'
+NeoBundle 'airblade/vim-gitgutter'
 NeoBundle 'tpope/vim-fugitive'
 NeoBundle 'wlangstroth/vim-racket'
 NeoBundle 'ds26gte/scmindent'
@@ -94,8 +92,14 @@ NeoBundle 'kovisoft/slimv'
 " NeoBundle 'http://svn.macports.org/repository/macports/contrib/mpvim/'
 " NeoBundle 'https://bitbucket.org/ns9tks/vim-fuzzyfinder'
 
+runtime! ../../rc.d/*.vim
+highlight SignColumn ctermbg=black
+highlight GitGutterAdd ctermfg=green
+highlight GitGutterDelete ctermfg=red
+highlight GitGutterChange ctermfg=yellow
+
 if has("autocmd")
-	au BufReadPost *.rkt,*.rktl set filetype=racket
+		au BufReadPost *.rkt,*.rktl set filetype=racket
 endif
 
 " File Specific Settings
