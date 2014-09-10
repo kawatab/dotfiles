@@ -25,6 +25,9 @@ set ruler
 
 set t_Co=256	" 256-color mode
 
+" Download color theme and copy to ~/.vim/colors
+colorscheme wombat256
+
 " set guioptions+=m
 set wildmenu
 set wildmode=full
