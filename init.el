@@ -1,12 +1,6 @@
-<<<<<<< HEAD
 ;; ;; emacs directory
 ;; (when load-file-name
   ;; (setq user-emacs-directory (file-name-directory load-file-name)))
-=======
-;; emacs directory
-(when load-file-name
-  (setq user-emacs-directory (file-name-directory load-file-name)))
->>>>>>> a89b798e19f773d59a9d9703c52b5574a1750e8e
 
 ;; package management
 (require 'package)
@@ -16,7 +10,6 @@
 (package-initialize)
 
 (defun package-install-with-refresh (package)
-<<<<<<< HEAD
   (unless (assq package package-alist)
     (package-refresh-contents))
   (unless (package-installed-p package)
@@ -35,25 +28,7 @@
   (menu-bar-mode 0))
 
 (setq inhibit-startup-message t) ;; Don't display startup message
-=======
-(unless (assq package package-alist)
-(package-refresh-contents))
-(unless (package-installed-p package)
-(package-install package)))
-
-;; Initial window configuration
-(when window-system
-(split-window-horizontally)
-(setq truncate-lines nil)
-(setq truncate-partial-width-windows nil)
-
-(setq default-frame-alist (append (list '(width .  164)
-                                        '(height . 60))
-                                  default-frame-alist)))
-
-;; Don't display startup message
-(setq inhibit-startup-message t)
->>>>>>> a89b798e19f773d59a9d9703c52b5574a1750e8e
+)
 ;; (ansi-term "/bin/zsh")
 (add-hook 'after-init-hook  (lambda() (eshell)))
 
@@ -63,10 +38,7 @@
 ;; enable evil
 (require 'evil)
 (evil-mode 1)
-<<<<<<< HEAD
 (define-key evil-insert-state-map "\C-h" 'delete-backward-char)
-=======
->>>>>>> a89b798e19f773d59a9d9703c52b5574a1750e8e
 
 ;; install geiser
 (package-install-with-refresh 'geiser)
@@ -80,7 +52,6 @@
 ;; enable git-gutter mode
 (global-git-gutter-mode t)
 
-<<<<<<< HEAD
 ;; install magit
 (package-install-with-refresh 'magit)
 
@@ -120,11 +91,6 @@
 			      (wdired-mode . normal))
       do (evil-set-initial-state mode state))
 
-=======
-;; install git-gutter
-(package-install-with-refresh 'magit)
-
->>>>>>> a89b798e19f773d59a9d9703c52b5574a1750e8e
 ;; Other settings
 (load-theme 'wombat)
 (show-paren-mode t) ;; show parenthesis
