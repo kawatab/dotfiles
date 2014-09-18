@@ -27,8 +27,8 @@
 					default-frame-alist)))
   (menu-bar-mode 0))
 
-(setq inhibit-startup-message t) ;; Don't display startup message
-)
+(setq inhibit-startup-message t) ;; Don't display startup message)
+
 ;; (ansi-term "/bin/zsh")
 (add-hook 'after-init-hook  (lambda() (eshell)))
 
