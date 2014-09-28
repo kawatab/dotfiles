@@ -45,5 +45,3 @@ alias grep='grep --color=auto'
 alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
 alias rgrep='rgrep --color=auto'
-
-[[ -z "$TMUX" && ! -z "$PS1" ]] && tmux -2

@@ -27,6 +27,9 @@ set t_Co=256	" 256-color mode
 
 " Download color theme and copy to ~/.vim/colors
 colorscheme wombat256
+highlight Normal ctermbg=none
+highlight NonText ctermbg=none
+highlight SpecialKey ctermbg=none
 
 " set guioptions+=m
 set wildmenu
@@ -38,7 +41,6 @@ set laststatus=2
 
 if has('vim_starting')
 		set runtimepath+=~/.vim/bundle/neobundle.vim/
-		set runtimepath+=~/.vim/bundle/im_control.vim/plugin/im_control.vim
 endif
 
 call neobundle#rc(expand('~/.vim/bundle/'))
@@ -84,7 +86,7 @@ NeoBundle 'tpope/vim-fugitive'
 NeoBundle 'wlangstroth/vim-racket'
 NeoBundle 'ds26gte/scmindent'
 NeoBundle 'kovisoft/slimv'
-NeoBundle 'fuenor/im_control.vim'
+" NeoBundle 'fuenor/im_control.vim'
 
 "GitHub以外のGitリポジトリにあるプラグインを利用する
 " NeoBundle 'git://git.wincent.com/command-t.git'
@@ -130,22 +132,22 @@ au FileType txt setlocal fo+=tn
 
 " for Japanese Input
 " 「日本語入力固定モード」の動作モード
-let IM_CtrlMode = 1
+" let IM_CtrlMode = 1
 " 「日本語入力固定モード」切替キー
-inoremap <silent> <C-j> <C-r>=IMState('FixMode')<CR>
+" inoremap <silent> <C-j> <C-r>=IMState('FixMode')<CR>
 
 " IBus 1.5以降
-function! IMCtrl(cmd)
-  let cmd = a:cmd
-  if cmd == 'On'
-    let res = system('ibus engine ' . g:IM_PrevMode)
-  elseif cmd == 'Off'
-    " let IM_PrevMode = system('ibus engine')
-    let res = system('ibus engine "xkb:us:altgr-intl:eng"')
-  endif
-  return ''
-endfunction
+" function! IMCtrl(cmd)
+  " let cmd = a:cmd
+  " if cmd == 'On'
+    " let res = system('ibus engine ' . g:IM_PrevMode)
+  " elseif cmd == 'Off'
+    " " let IM_PrevMode = system('ibus engine')
+    " let res = system('ibus engine "xkb:us:altgr-intl:eng"')
+  " endif
+  " return ''
+" endfunction
 .
 " <ESC>押下後のIM切替開始までの反応が遅い場合はttimeoutlenを短く設定してみてください。
 " IMCtrl()のsystem()コマンド実行時に&を付けて非同期で実行するという方法でも体感速度が上がる場合があります。
-set timeout timeoutlen=3000 ttimeoutlen=100 
+" set timeout timeoutlen=3000 ttimeoutlen=100 
