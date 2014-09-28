@@ -95,7 +95,7 @@
 (require 'evil)
 (evil-mode 1)
 (define-key evil-insert-state-map "\C-h" 'delete-backward-char)
-(modify-syntax-entry ?_ "w" (standard-syntax-table))
+(modify-syntax-entry ?_ "w")
 (loop for (mode . state) in '((bc-menu-mode . emacs)
 			      (comint-mode . normal)
 			      (dired-mode . emacs)
