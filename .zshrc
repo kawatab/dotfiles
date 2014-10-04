@@ -1,4 +1,4 @@
-# Set up the prompt
+#Set up the prompt
 
 autoload -Uz promptinit
 promptinit
@@ -45,3 +45,50 @@ alias grep='grep --color=auto'
 alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
 alias rgrep='rgrep --color=auto'
+
+if [ -n "$TMUX" ]; then
+		function less_tmux()
+		{
+				eval server=\${$#}
+				if [[ $# -gt 0 && $1 == "-np" ]]; then
+						shift
+						if [ -t 0 ]; then
+								/usr/bin/less $@
+						else
+								/usr/bin/less -
+						fi
+				elif [ -t 0 ]; then
+						tmux split-window -p 65 "exec less $@"
+				else
+						tmux split-window -p 65
+				fi
+		}
+
+		function vi_tmux()
+		{
+				eval server=\${$#}
+				if [[ $# -gt 0 && $1 == "-np" ]]; then
+						shift
+						echo $@
+						vi $@
+						return
+				fi
+				tmux split-window -p 65 "exec vi $@"
+		}
+
+		function man_tmux()
+		{
+				eval server=\${$#}
+				if [[ $# -gt 0 && $1 == "-np" ]]; then
+						shift
+						echo $@
+						man $@
+						return
+				fi
+				tmux split-window -p 65 "exec man $@"
+		}
+
+    alias less='less_tmux'
+    alias vi='vi_tmux'
+    alias man='man_tmux'
+fi

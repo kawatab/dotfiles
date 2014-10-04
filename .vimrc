@@ -1,27 +1,24 @@
 set nocompatible
 
 set title	" Display the file name
+
 syntax on	" colored syntax
+set showmatch
+" set number
+set ruler
+
 set tabstop=4	" indent with 4 spaces
 set smartindent	" auto indent
+set smarttab
+set autoindent	" indent in new line as well as previous line
+" set expandtab	" use spaces instead of tabs
 
 " set ignorecase	"ignore cast
 " set smartcase	" cast sensitive if a capital letter is included
 set wrapscan
-
-set autoindent	" indent in new line as well as previous line
-
-" set expandtab	" use spaces instead of tabs
-set hidden	" edit several files without saving
-
 set incsearch	" turn on incremental search
 
-set showmatch
-
-set smarttab
-
-" set number
-set ruler
+set hidden	" edit several files without saving
 
 set t_Co=256	" 256-color mode
 
@@ -78,6 +75,7 @@ NeoBundleCheck
 " NeoBundle 'davidoc/taskpaper.vim'
 " NeoBundle 'altercation/vim-colors-solarized'
 " NeoBundle 'Shougo/vimshell.vim'
+NeoBundle 'Shougo/neomru.vim'
 NeoBundle 'Shougo/unite.vim'
 NeoBundle 'Shougo/vimfiler.vim'
 NeoBundle 'itchyny/lightline.vim'
@@ -108,6 +106,10 @@ highlight GitGutterChange ctermfg=yellow
 if has("autocmd")
 		au BufReadPost *.rkt,*.rktl set filetype=racket
 endif
+
+command! ROF Unite file_mru -split
+command! RecentOpenFiles Unite file_mru -split
+command! Dired VimFiler -horizontal -split -force-quit
 
 " File Specific Settings
 " ------------------------------------------------------------
@@ -147,7 +149,7 @@ au FileType txt setlocal fo+=tn
   " endif
   " return ''
 " endfunction
-.
+
 " <ESC>押下後のIM切替開始までの反応が遅い場合はttimeoutlenを短く設定してみてください。
 " IMCtrl()のsystem()コマンド実行時に&を付けて非同期で実行するという方法でも体感速度が上がる場合があります。
 " set timeout timeoutlen=3000 ttimeoutlen=100 
