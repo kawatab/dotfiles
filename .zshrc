@@ -7,10 +7,10 @@ prompt adam1
 setopt histignorealldups sharehistory
 
 # Use emacs keybindings even if our EDITOR is set to vi
-# bindkey -e
+bindkey -e
 
 # Use vi keybindings
-bindkey -v
+# bindkey -v
 
 # Keep 1000 lines of history within the shell and save it to ~/.zsh_history:
 HISTSIZE=1000
@@ -47,48 +47,40 @@ alias egrep='egrep --color=auto'
 alias rgrep='rgrep --color=auto'
 
 if [ -n "$TMUX" ]; then
-		function less_tmux()
-		{
-				eval server=\${$#}
-				if [[ $# -gt 0 && $1 == "-np" ]]; then
-						shift
-						if [ -t 0 ]; then
-								/usr/bin/less $@
-						else
-								/usr/bin/less -
-						fi
-				elif [ -t 0 ]; then
-						tmux split-window -p 65 "exec less $@"
-				else
-						tmux split-window -p 65
-				fi
-		}
+    function less_tmux()
+    {
+        eval server=\${$#}
+        if [ -t 0 ]; then
+            tmux split-window -p 65 "exec less $@"
+        else
+            cat > /tmp/tmux.tmp && tmux split-window -p 65 "less /tmp/tmux.tmp"
+        fi
+    }
 
-		function vi_tmux()
-		{
-				eval server=\${$#}
-				if [[ $# -gt 0 && $1 == "-np" ]]; then
-						shift
-						echo $@
-						vi $@
-						return
-				fi
-				tmux split-window -p 65 "exec vi $@"
-		}
+    compdef _less less_tmux
 
-		function man_tmux()
-		{
-				eval server=\${$#}
-				if [[ $# -gt 0 && $1 == "-np" ]]; then
-						shift
-						echo $@
-						man $@
-						return
-				fi
-				tmux split-window -p 65 "exec man $@"
-		}
+    function vi_tmux()
+    {
+        eval server=\${$#}
+        tmux split-window -p 65 "exec vi $@"
+    }
+
+    compdef _vim vi_tmux
+
+    function man_tmux()
+    {
+        eval server=\${$#}
+        tmux split-window -p 65 "exec man $@"
+    }
+
+    compdef _man man_tmux
 
     alias less='less_tmux'
+    alias less_std='/usr/bin/less'
     alias vi='vi_tmux'
+    alias vi_std='/usr/bin/vim'
+    alias vim='vi_tmux'
+    alias vim_std='/usr/bin/vim'
     alias man='man_tmux'
+    alias man_std='/usr/bin/man'
 fi

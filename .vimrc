@@ -107,6 +107,15 @@ if has("autocmd")
 		au BufReadPost *.rkt,*.rktl set filetype=racket
 endif
 
+"" Key binds and commands
+imap <C-x><C-f> <ESC>:e 
+nmap <C-x><C-f> :e 
+imap <C-x>b <ESC>:Unite -start-insert buffer<CR>
+nmap <C-x>b :Unite -start-insert buffer<CR>
+imap <C-x><C-r> <ESC>:Unite -start-insert file_mru<CR>
+nmap <C-x><C-r> :Unite -start-insert file_mru<CR>
+nnoremap ZZ <Nop>					" avoid wrong operation accidentally
+nnoremap ZQ <Nop>					" avoid wrong operation accidentally
 command! ROF Unite file_mru -split
 command! RecentOpenFiles Unite file_mru -split
 command! Dired VimFiler -horizontal -split -force-quit
@@ -118,8 +127,14 @@ autocmd FileType javascript setl tabstop=8 expandtab shiftwidth=2 softtabstop=2
 
 au FileType xhtml,html,htm,php,xml setlocal tabstop=2
 au FileType xhtml,html,htm,php,xml setlocal shiftwidth=2
-"au FileType xhtml,html,htm,php,xml setlocal expandtab      " (et) expand tabs to spaces (use :retab to redo entire file)
+au FileType xhtml,html,htm,php,xml setlocal expandtab      " (et) expand tabs to spaces (use :retab to redo entire file)
 au FileType xhtml,html,htm,php,xml setlocal softtabstop=2   " (sts) makes spaces feel like tabs (like deleting)
+au FileType zsh setlocal tabstop=4
+au FileType zsh setlocal shiftwidth=4
+au FileType zsh setlocal softtabstop=4
+au FileType zsh setlocal expandtab
+au FileType zsh setlocal autoindent
+au FileType zsh setlocal smartindent
 
 au FileType c,h,java,js setlocal mps+==:;                   " allow the match pairs operation (%) to work with '=' and ';'
 
