@@ -51,7 +51,7 @@ if [ -n "$TMUX" ]; then
     {
         eval server=\${$#}
         if [ -t 0 ]; then
-            tmux split-window -p 65 "exec less $@"
+            tmux split-window -p 65 "exec /usr/bin/less $@"
         else
             cat > /tmp/tmux.tmp && tmux split-window -p 65 "less /tmp/tmux.tmp"
         fi
@@ -62,7 +62,7 @@ if [ -n "$TMUX" ]; then
     function vi_tmux()
     {
         eval server=\${$#}
-        tmux split-window -p 65 "exec vi $@"
+        tmux split-window -p 65 "exec /usr/bin/vim $@"
     }
 
     compdef _vim vi_tmux
@@ -70,7 +70,7 @@ if [ -n "$TMUX" ]; then
     function man_tmux()
     {
         eval server=\${$#}
-        tmux split-window -p 65 "exec man $@"
+        tmux split-window -p 65 "exec /usr/bin/man $@"
     }
 
     compdef _man man_tmux
